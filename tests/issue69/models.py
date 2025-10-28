@@ -26,10 +26,10 @@ class OwnerAsset(models.Model):
 class DeferredDataManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().defer('data')
+
 class Table(models.Model):
     class Meta:
         app_label = 'issue69'
 
     data = models.CharField(null=True, blank=True, max_length=255)
     objects = DeferredDataManager()
-
